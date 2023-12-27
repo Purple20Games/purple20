@@ -1,0 +1,48 @@
+<!-- popup.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    html {
+      min-height: 10em;
+      min-width: 15em;
+      background: white;
+    }
+	h2 {
+	  color: purple;
+	}
+	
+	.float-container {
+		xxborder: 3px solid #fff;
+		xxpadding: 20px;
+	}
+
+	.float-child {
+		width: 50%;
+		float: left;
+	}  
+  </style>
+  
+</head>
+
+
+<body>
+	<h2>Purple20</h2>
+	
+	
+	
+	<div class="float-container">
+		<div class="float-child">Companion status:</div>
+		<div class="float-child" id="crawlerStatus"></div>
+	</div>
+	
+	<div class="float-container">
+		<div class="float-child">Roll20 status:</div>
+		<div class="float-child" id="roll20Status"></div>
+	</div>
+
+</body>
+
+<script src="options.js"></script>
+
+</html>

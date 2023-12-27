@@ -1,0 +1,42 @@
+
+
+
+{
+    "name": "Purple20",
+	"permissions": [
+		"storage"
+	],
+    "version": "0.005",
+	"icons": {
+		"48": "images/shield_48.png",
+		"128": "images/shield_128.png"
+	},
+    "description": "Purple20 is an extension that allows Crawler Companion rolls to be visible in Roll20 chat",
+	"background": {
+		"service_worker": "background.js"
+	},
+	"content_scripts": [
+		{
+			"matches": ["https://app.roll20.net/editor/*"],
+			"js": ["content_roll20.js"],
+			"run_at": "document_end"
+		},
+		{
+			"matches": ["https://crawler.purplesorcerer.com/*"],
+			"js": ["content_crawler.js"],
+			"run_at": "document_end"
+		},
+		{
+			"matches": ["https://crawler.purplesorcerer.com/*"],
+			"js": ["content_crawler_main.js"],
+			"run_at": "document_end",
+			"world": "MAIN"
+		}
+	],
+    "manifest_version": 3,
+    "author": "Purple20 Games",
+	"action":{
+        "default_popup": "index.html",
+        "default_title": "Purple20"
+    }
+}
