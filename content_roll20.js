@@ -33,17 +33,22 @@ const postToRoll20Chat = (msg) => {
 }
 
 const postSimpleToRoll20Chat = (msg) => {
-  templated_msg = "&{template:default} {{name=Purple20 doth speak}} {{msg=" + msg + "}}"
+  templated_msg = "&{template:default} {{name=Purple20 doth speak}} {{msg=" + msg + "}}";
   postToRoll20Chat(templated_msg);
 }
 
 const postLogToRoll20Chat = (log) => {
   var t = JSON.parse(log);
   
+  // todo -- make this more intelligent
+  msg = t.rollValue.replaceAll("<br>", "\r");
+  msg = msg.replaceAll(/<\/?strong>/g, '**');
+  //msg = msg.replaceAll("</strong>", "**");
+  
   if (t.mode == "rolls")
-	templated_msg = "&{template:default} {{name=Purple20 doth roll!}} {{roll=" + t.rollValue + "}}"
+	templated_msg = "&{template:default} {{name=Purple20 doth roll!}} {{roll=" + msg + "}}"
   else
-	templated_msg = "&{template:default} {{name=Purple20 doth speak!}} {{msg=" + t.rollValue + "}}"
+	templated_msg = "&{template:default} {{name=Purple20 doth speak!}} {{msg=" + msg + "}}"
   
   postToRoll20Chat(templated_msg);
 }
@@ -77,6 +82,14 @@ function connect (){
 			console.log("Unknown cmd", msg.cmd);
 		  
 		});
+		
+		
+		
+		p20_port.onDisconnect.addListener(() => {
+			console.log("p20 disconnected");
+			p20_state.purple20_port = null;
+		});
+		
 	})();
 
 }

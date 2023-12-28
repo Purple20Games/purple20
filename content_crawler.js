@@ -48,11 +48,17 @@ function register () {
 		p20_port.postMessage({cmd: "register", payload: "register"});
 		
 		p20_port.onMessage.addListener(function(msg) {
-		  console.log("purple20_crawler received :: ", msg);
+			console.log("purple20_crawler received :: ", msg);
 		  
-		  // since we got something back, go ahead and assume the port is valid
-		  p20_state.purple20_port = p20_port;
+			// since we got something back, go ahead and assume the port is valid
+			p20_state.purple20_port = p20_port;
 		});
+		
+		p20_port.onDisconnect.addListener(() => {
+			console.log("p20 disconnected");
+			p20_state.purple20_port = null;
+		});
+		
 	})();
 
 }

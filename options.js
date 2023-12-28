@@ -29,3 +29,18 @@ chrome.runtime.sendMessage("getCrawlerStatus", function(response) {
   //document.getElementById('crawlerStatus').value=response.result;
   document.getElementById('crawlerStatus').innerHTML=response.result;
 });
+
+
+function recycleRoll20() {
+
+	chrome.runtime.sendMessage("recycleRoll20", function(response) {
+	  console.log(`message from recycleRoll20: ${JSON.stringify(response)}`);
+	});
+}
+
+function recycleCrawler() {
+
+	chrome.runtime.sendMessage("recycleCrawler", function(response) {
+	  console.log(`message from recycleCrawler: ${JSON.stringify(response)}`);
+	});
+}

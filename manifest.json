@@ -36,7 +36,7 @@
     "manifest_version": 3,
     "author": "Purple20 Games",
 	"action":{
-        "default_popup": "index.html",
+        "default_popup": "options.html",
         "default_title": "Purple20"
     }
 }
