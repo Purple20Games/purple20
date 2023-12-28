@@ -11,6 +11,7 @@ const p20_state = {
   },
 };
 
+// replace this with stateful storage
 (function(){
 	if (p20_state.purple20_port)
 		p20_state.purple20_port.postMessage({cmd: "ping", payload: "ping"});
@@ -25,7 +26,7 @@ const postToRoll20Chat = (msg) => {
   // remove and restore any text in the chat box while we hijack it to post this message to chat
   if (chatInputElement && chatButtonElement) {
     const activeText = chatInputElement.value;
-    chatInputElement.value = templated_msg;
+    chatInputElement.value = msg;
     chatButtonElement.click();
     if (activeText) setTimeout(() => chatInputElement.value = activeText, 10);
   }
