@@ -9,8 +9,14 @@ Purple20 is a Chrome extension that supports integration of the DCC Crawler Comp
 Install via the Chrome store at https://chromewebstore.google.com/detail/fhefaendccigncfdkfjcaklophndhkkd
 
 ### Usage
-* Install the extension
 * Navigate to Crawler Companion (be sure you're online and broadcasting)
 * In a separate tab, navigate to Roll20 and enter a game
 * Confirm that the Purple 20 extension shows the status of both as "connected"
-* Roll dice in Crawler Companion -- the rolls should appear in Roll20
+* Roll dice in Crawler Companion -- the rolls should appear in Roll20 (straight rolls, fumble table, crit table, spells)
+
+
+#### Optional
+* Install P20Bot
+* In Crawler Companion, generate any
+* P20Bot should recognize it in Roll20 and auto-generate a character sheet for it
+
