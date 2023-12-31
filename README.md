@@ -12,11 +12,11 @@ Install via the Chrome store at https://chromewebstore.google.com/detail/fhefaen
 * Navigate to Crawler Companion (be sure you're online and broadcasting)
 * In a separate tab, navigate to Roll20 and enter a game
 * Confirm that the Purple 20 extension shows the status of both as "connected"
-* Roll dice in Crawler Companion -- the rolls should appear in Roll20 (straight rolls, fumble table, crit table, spells)
+* The following dice rolls should appear in Roll20: straight rolls, fumble table, crit table, spells
 
 
-#### Optional
+#### Optional (character generator support)
 * Install P20Bot
-* In Crawler Companion, generate any
+* In Crawler Companion, generate any 0-level PC character
 * P20Bot should recognize it in Roll20 and auto-generate a character sheet for it
 
