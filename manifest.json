@@ -6,12 +6,12 @@
 	"permissions": [
 		"storage"
 	],
-    "version": "0.006",
+    "version": "0.008",
 	"icons": {
 		"48": "images/shield_48.png",
 		"128": "images/shield_128.png"
 	},
-    "description": "Purple20 is an extension that allows Crawler Companion rolls to be visible in Roll20 chat",
+    "description": "Purple20 supports integration of DCC games with Roll20, allowing Crawler Companion rolls to be visible in the Roll20 VTT",
 	"background": {
 		"service_worker": "background.js"
 	},

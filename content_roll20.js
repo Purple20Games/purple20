@@ -1,5 +1,9 @@
-window.setTimeout(connect, 5000); //ensures page is fully loaded before executing functions
+//window.setTimeout(connect, 5000); //ensures page is fully loaded before executing functions
 
+connect();
+
+
+// holds the port state
 const p20_state = {
   p20_port: null,
   set purple20_port(port) {
@@ -12,11 +16,11 @@ const p20_state = {
 };
 
 // replace this with stateful storage
-(function(){
+/*(function(){
 	if (p20_state.purple20_port)
 		p20_state.purple20_port.postMessage({cmd: "ping", payload: "ping"});
     setTimeout(arguments.callee, 10000);
-})();
+})();*/
 
 
 const postToRoll20Chat = (msg) => {
@@ -37,13 +41,16 @@ const postSimpleToRoll20Chat = (msg) => {
   postToRoll20Chat(templated_msg);
 }
 
-const postLogToRoll20Chat = (log) => {
+const postLogToRoll20Chat = (log, replace_html) => {
   var t = JSON.parse(log);
   
   // todo -- make this more intelligent
-  msg = t.rollValue.replaceAll("<br>", "\r");
-  msg = msg.replaceAll(/<\/?strong>/g, '**');
-  //msg = msg.replaceAll("</strong>", "**");
+  msg = t.rollValue
+  if (replace_html == true) {
+	  msg = t.rollValue.replaceAll("<br>", "\r");
+	  msg = msg.replaceAll(/<\/?strong>/g, '**');
+	  //msg = msg.replaceAll("</strong>", "**");
+  }
   
   if (t.mode == "rolls")
 	templated_msg = "&{template:default} {{name=Purple20 doth roll!}} {{roll=" + msg + "}}"
@@ -76,7 +83,10 @@ function connect (){
 			postSimpleToRoll20Chat(msg.payload)
 			
 		  else if (msg.cmd == "cc_log") {
-			postLogToRoll20Chat(msg.payload)
+			postLogToRoll20Chat(msg.payload, true)
+		  }
+		  else if (msg.cmd == "dcc_char") {
+			postLogToRoll20Chat(msg.payload, true)
 		  }
 		  else
 			console.log("Unknown cmd", msg.cmd);
@@ -88,6 +98,7 @@ function connect (){
 		p20_port.onDisconnect.addListener(() => {
 			console.log("p20 disconnected");
 			p20_state.purple20_port = null;
+			connect();
 		});
 		
 	})();

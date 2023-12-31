@@ -1,6 +1,6 @@
 window.setTimeout(overrides, 5000); //ensures page is fully loaded before executing functions
 
-
+// override the hook location.  
 function overrides (){
 
 	console.log("Overriding sendMessage")

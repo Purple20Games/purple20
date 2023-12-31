@@ -1,5 +1,6 @@
 
-
+// this is our state object.  It tracks the ports opened 
+// to the crawler and roll20 content sheets
 const p20_state = {
   r20_port: null,
   cc_port: null,
@@ -35,7 +36,7 @@ const p20_state = {
 
 
 
-/*  MESSAGING WITH THE POPUP   */
+// listen for messages from the popup / options
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
     if (request == "getRoll20Status") {
@@ -46,7 +47,7 @@ chrome.runtime.onMessage.addListener(
       sendResponse({ result: "unknown cmd" });
     }
     // Note: Returning true is required here!
-    //  ref: http://stackoverflow.com/questions/20077487/chrome-extension-message-passing-response-not-sent
+    // ref: http://stackoverflow.com/questions/20077487/chrome-extension-message-passing-response-not-sent
     return true; 
   }
 );
@@ -54,12 +55,13 @@ chrome.runtime.onMessage.addListener(
   
 
 
-/*   MESSAGING WITH THE CONTENT SCRIPTS    */
-
+// listen for a content script (roll20, cc) connection. 
+// add a listener for registration, cc_logs, pings, acks and other messages
 chrome.runtime.onConnect.addListener(function(port) {
 
 	console.log("received a connect event. port name = ", port.name);
 	
+	// crawler may emit various messages.  Listen for them.
 	if (port.name == "purple20_crawler") {
 		port.onMessage.addListener(function(msg, sendingPort) {
 			console.log("purple20_crawler listener received an event", msg);
@@ -69,6 +71,8 @@ chrome.runtime.onConnect.addListener(function(port) {
 				port.postMessage({cmd: "ack", payload: "Crawler registration successful"});
 			}
 			else if (msg.cmd == "cc_log")
+				p20_state.roll20_port.postMessage({cmd: msg.cmd, payload: msg.payload});
+			else if (msg.cmd == "dcc_char")
 				p20_state.roll20_port.postMessage({cmd: msg.cmd, payload: msg.payload});
 			else if (msg.cmd == "ack")
 				console.log("ack received")
@@ -85,6 +89,7 @@ chrome.runtime.onConnect.addListener(function(port) {
 		});
 	}
 	
+	// roll20 may emit various commands (limited to registration and ping r/n)
 	if (port.name == "purple20_roll20") {
 		port.onMessage.addListener(function(msg, sendingPort) {
 			console.log("purple20_roll20 listener received an event", msg);
