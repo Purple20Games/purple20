@@ -35,6 +35,18 @@ const p20_state = {
 };
 
 
+	
+/*
+(async () => {
+	const response = await fetch("https://muna.ironarachne.com/human/?count=3&nameType=male");
+	const jsonData = await response.json();
+	// JSON.parse does not evaluate the attacker's scripts.
+	//let resp = JSON.parse(jsonData);
+	console.log(jsonData);
+}) ();
+*/	
+
+
 
 // listen for messages from the popup / options
 chrome.runtime.onMessage.addListener(
@@ -61,6 +73,7 @@ chrome.runtime.onConnect.addListener(function(port) {
 
 	console.log("received a connect event. port name = ", port.name);
 	
+
 	// crawler may emit various messages.  Listen for them.
 	if (port.name == "purple20_crawler") {
 		port.onMessage.addListener(function(msg, sendingPort) {
