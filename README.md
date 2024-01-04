@@ -20,3 +20,6 @@ Install via the Chrome store at https://chromewebstore.google.com/detail/fhefaen
 * In Crawler Companion, generate any 0-level PC character
 * P20Bot should recognize it in Roll20 and auto-generate a character sheet for it
 
+### Revisions
+0.008 - Fixed incorrect registration check
+
