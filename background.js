@@ -35,17 +35,6 @@ const p20_state = {
 };
 
 
-	
-/*
-(async () => {
-	const response = await fetch("https://muna.ironarachne.com/human/?count=3&nameType=male");
-	const jsonData = await response.json();
-	// JSON.parse does not evaluate the attacker's scripts.
-	//let resp = JSON.parse(jsonData);
-	console.log(jsonData);
-}) ();
-*/	
-
 
 
 // listen for messages from the popup / options

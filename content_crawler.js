@@ -42,7 +42,7 @@ window.addEventListener("message", function(event) {
 	}
 	
 	// for now, simply try to register if you aren't connected  TBD
-	if (p20_state.purple20_port) {
+	if (p20_state.purple20_port == null) {
 		console.log("Connection unexpectedly broken/null.  Reconnecting");
 		connect();
 	}
