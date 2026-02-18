@@ -22,4 +22,5 @@ Install via the Chrome store at https://chromewebstore.google.com/detail/fhefaen
 
 ### Revisions
 0.008 - Fixed incorrect registration check
+
 0.9   - MV3 support.  Code refactor
