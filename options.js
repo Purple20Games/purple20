@@ -31,6 +31,9 @@ chrome.runtime.sendMessage("getCrawlerStatus", function(response) {
 });
 
 
+document.getElementById('crawlerVersion').innerHTML=chrome.runtime.getManifest().version;
+
+
 function recycleRoll20() {
 
 	chrome.runtime.sendMessage("recycleRoll20", function(response) {
